@@ -22,12 +22,6 @@ for (item_id, order_id, qty, description, price) in cursor:
                              "qty" : qty,
                              "description" : description,
                              "price" : price })
-    if len(items) % 10000 == 0:
-        if prevlen != len(items):
-            print len(items)
-            prevlen = len(items)
-
-print "items loaded"
 
 tracking = defaultdict(list)
 cursor.execute("""
@@ -37,14 +31,6 @@ prevlen = 0
 for (order_id, status, time_stamp) in cursor:
     tracking[order_id].append({ "status" : status,
                                 "timestamp" : time_stamp })
-    if len(tracking) % 10000 == 0:
-        if prevlen != len(tracking):
-            print len(tracking)
-            prevlen = len(tracking)
-
-
-print "tracking loaded"
-
 
 cursor.execute("""
   select id as order_id, first_name, last_name, shipping_address from orders
