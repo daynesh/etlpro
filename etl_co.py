@@ -26,21 +26,15 @@ order_cursor.execute("""
     order by order_id
 """)
 
-print "order query done"
-
 item_cursor.execute("""
         select id as item_id, order_id, qty, description, price  from items
         order by order_id
     """)
 
-print "item query done"
-
 tracking_cursor.execute("""
     select order_id, status, timestamp from tracking
     order by order_id
 """)
-
-print "tracking query done"
 
 item_row = (0, 0, 0, "", 0)
 tracking_row = (0, "", 0)
